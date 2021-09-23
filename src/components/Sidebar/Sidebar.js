@@ -1,9 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./Sidebar.scss";
+import GENRES from "../../data/genres";
 
 const Sidebar = props => {
-  const handleGenreSelect = e => {};
+
+  const { selectedGenre, setSelectedGenre, genres } = props;
+
+
+  const handleGenreSelect = e => {
+
+    setSelectedGenre(e.target.value);
+
+  };
+
 
   return (
     <div className="sidebar_container">
@@ -17,9 +27,11 @@ const Sidebar = props => {
             name="genres"
             id="genre-select"
             onChange={handleGenreSelect}
-            value=""
+            value={selectedGenre.name}
           >
-            <option value="">All genres</option>
+            {genres.map(genre => (
+            <option value={genre.name}>{genre.name}</option>
+            ))}
           </select>
         </div>
       </div>
